@@ -1,7 +1,17 @@
 import axios from 'axios';
-import { Propietario, Propiedad, Cliente, Interes, ApiResponse } from '../types';
+import { 
+  Propietario, 
+  Propiedad, 
+  Cliente, 
+  Interes, 
+  Operacion, 
+  Visita, 
+  Seguimiento, 
+  ApiResponse,
+  AuthResponse
+} from '../types';
 
-// 1. Configuramos la URL base (Tu backend)
+// 1. Configuramos la URL base
 const api = axios.create({
   baseURL: 'http://localhost:4000/api',
   headers: {
@@ -26,7 +36,7 @@ export const getPropiedades = async () => {
   return data;
 };
 
-export const createPropiedad = async (datos: Omit<Propiedad, 'id'>) => {
+export const createPropiedad = async (datos: any) => {
   const { data } = await api.post<ApiResponse<Propiedad>>('/propiedades', datos);
   return data;
 };
@@ -50,6 +60,50 @@ export const getIntereses = async () => {
 
 export const createInteres = async (datos: { clienteId: string; propiedadId: string; nota?: string }) => {
   const { data } = await api.post<ApiResponse<Interes>>('/intereses', datos);
+  return data;
+};
+
+// --- OPERACIONES (GESTIÓN) --- 
+export const getOperaciones = async () => {
+  const { data } = await api.get<Operacion[]>('/operaciones');
+  return data;
+};
+
+export const createOperacion = async (datos: any) => {
+  const { data } = await api.post<ApiResponse<Operacion>>('/operaciones', datos);
+  return data;
+};
+
+// --- VISITAS FÍSICAS ---
+export const getVisitas = async () => {
+  const { data } = await api.get<Visita[]>('/visitas');
+  return data;
+};
+
+export const createVisita = async (datos: any) => {
+  const { data } = await api.post<ApiResponse<Visita>>('/visitas', datos);
+  return data;
+};
+
+// --- SEGUIMIENTO (COMUNICACIÓN) ---
+export const getSeguimientos = async () => {
+  const { data } = await api.get<Seguimiento[]>('/seguimientos');
+  return data;
+};
+
+export const createSeguimiento = async (datos: any) => {
+  const { data } = await api.post<ApiResponse<Seguimiento>>('/seguimientos', datos);
+  return data;
+};
+
+// --- AUTENTICACIÓN (LOGIN/REGISTRO) ---
+export const loginUser = async (credentials: { email: string; password: string }) => {
+  const { data } = await api.post<AuthResponse>('/auth/login', credentials);
+  return data;
+};
+
+export const registerUser = async (credentials: { nombre: string; email: string; password: string }) => {
+  const { data } = await api.post<AuthResponse>('/auth/registro', credentials);
   return data;
 };
 

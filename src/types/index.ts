@@ -14,12 +14,14 @@ export interface Propiedad {
   id: string;
   direccion: string;
   precio: number | string; // Puede venir como texto del input o numero de la BD
+  moneda: string;
   tipo: 'Venta' | 'Alquiler' | string;
+  modalidad: 'Venta' | 'Alquiler' | 'Anticresis';
   descripcion: string;
   area: number;
   areaConstruida: number;
   propietarioId: string;
-  Propietario?: Propietario; // Relación anidada (opcional)
+  Propietario?: Propietario;
 }
 
 // Definición de Cliente
@@ -50,4 +52,59 @@ export interface ApiResponse<T> {
   message: string;
   data: T;
   error?: string;
+}
+
+// Definición de Operación (Gestión)
+export interface Operacion {
+  id: string;
+  tipoGestion: string; // Venta, Alquiler...
+  estado: string;      // Alta, Baja
+  fechaOperacion: string;
+  fechaContrato: string;
+  precioFinal: number;
+  honorarios: number;
+  asesor: string;
+  propiedadId: string;
+  clienteId?: string;
+  Propiedad?: Propiedad;
+  Cliente?: Cliente;
+}
+
+export interface Visita {
+  id: string;
+  asesor: string;
+  fecha: string;
+  hora: string;
+  resultado: string;
+  comentario?: string;
+  clienteId: string;
+  propiedadId: string;
+  Cliente?: Cliente;
+  Propiedad?: Propiedad;
+}
+
+export interface Seguimiento {
+  id: string;
+  tipoAccion: string;
+  fecha: string;
+  respuesta: string;
+  clienteId: string;
+  propiedadId: string;
+  Cliente?: Cliente;
+  Propiedad?: Propiedad;
+}
+
+// Definición de Usuario (Login)
+export interface Usuario {
+  id: string;
+  nombre: string;
+  email: string;
+  rol: string;
+}
+
+// Respuesta del Login
+export interface AuthResponse {
+  message: string;
+  token: string;
+  usuario: Usuario;
 }

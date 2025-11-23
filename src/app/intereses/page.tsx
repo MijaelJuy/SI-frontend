@@ -40,16 +40,24 @@ export default function InteresesPage() {
       <Navbar />
       <main className="container mx-auto p-6">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-primary">Libro de Intereses</h1>
-          <button onClick={() => setModalOpen(true)} className="btn btn-primary">+ Registrar Nuevo Interés</button>
+          <h1 className="text-3xl font-bold text-primary">Personas Interesadas</h1>
+          
+          {/* 👇 BOTÓN CORREGIDO */}
+          <button 
+            onClick={() => setModalOpen(true)} 
+            className="btn px-10 text-lg font-bold border-0 border-b-4 border-purple-600 shadow-lg backdrop-blur-md bg-white/80 text-gray-900 hover:bg-white dark:bg-black/40 dark:text-white dark:hover:bg-black/60"
+          >
+            + Registrar Interés
+          </button>
         </div>
 
         {intereses.length === 0 ? (
-          <div className="text-center">No hay intereses registrados.</div>
+          <div className="text-center p-10 opacity-50">No hay intereses registrados.</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Tarjetas (Sin cambios) */}
             {intereses.map((int) => (
-              <div key={int.id} className="card bg-base-100 shadow-xl border-l-4 border-secondary">
+              <div key={int.id} className="card bg-base-100 shadow-xl border-l-4 border-secondary hover:shadow-2xl transition-all">
                 <div className="card-body">
                   <div className="flex justify-between">
                     <h3 className="text-xs font-bold text-gray-500">{new Date(int.createdAt || Date.now()).toLocaleDateString()}</h3>
@@ -59,7 +67,7 @@ export default function InteresesPage() {
                   <p className="text-lg font-bold text-secondary">👤 {int.Cliente?.nombre}</p>
                   <p className="mt-2 text-sm text-gray-400 font-bold">PROPIEDAD</p>
                   <p className="text-base font-bold">🏠 {int.Propiedad?.direccion}</p>
-                  {int.nota && <p className="mt-3 italic text-sm bg-base-200 p-2 rounded">"{int.nota}"</p>}
+                  {int.nota && <p className="mt-3 italic text-sm bg-base-200 p-3 rounded border border-base-300">"{int.nota}"</p>}
                 </div>
               </div>
             ))}
@@ -67,26 +75,29 @@ export default function InteresesPage() {
         )}
 
         <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} title="Registrar Interés">
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 mt-2">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 mt-4">
+             {/* ... (Formulario intacto) ... */}
             <div className="form-control w-full">
-              <div className="label pb-1"><span className="label-text font-bold">Cliente</span></div>
-              <select {...register('clienteId')} className="select select-bordered w-full">
+              <label className="label pb-2"><span className="label-text font-bold text-base">Cliente</span></label>
+              <select {...register('clienteId')} className="select select-bordered w-full h-12 text-lg">
                 <option value="">Seleccione...</option>
-                {clientes.map(c => <option key={c.id} value={c.id}>{c.nombre} (DNI: {c.dni})</option>)}
+                {clientes.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}
               </select>
             </div>
             <div className="form-control w-full">
-              <div className="label pb-1"><span className="label-text font-bold">Propiedad</span></div>
-              <select {...register('propiedadId')} className="select select-bordered w-full">
+              <label className="label pb-2"><span className="label-text font-bold text-base">Propiedad</span></label>
+              <select {...register('propiedadId')} className="select select-bordered w-full h-12 text-lg">
                 <option value="">Seleccione...</option>
                 {propiedades.map(p => <option key={p.id} value={p.id}>{p.tipo}: {p.direccion}</option>)}
               </select>
             </div>
             <div className="form-control w-full">
-              <div className="label pb-1"><span className="label-text">Nota</span></div>
-              <textarea {...register('nota')} className="textarea textarea-bordered" placeholder="Detalles..." />
+              <label className="label pb-2"><span className="label-text font-bold text-base">Nota</span></label>
+              <textarea {...register('nota')} className="textarea textarea-bordered w-full h-24 resize-none text-lg" placeholder="Detalles..." />
             </div>
-            <button className="btn btn-primary mt-4">Guardar</button>
+            <button type="submit" className="btn btn-primary w-full mt-6 text-lg h-12 shadow-lg font-bold bg-gradient-to-r from-blue-600 to-violet-600 border-none">
+              Guardar
+            </button>
           </form>
         </Modal>
       </main>

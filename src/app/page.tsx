@@ -8,20 +8,22 @@ export default function Home() {
       <Navbar />
       <main className="container mx-auto p-6">
         
-        {/* HERO */}
+        {/* HERO BANNER */}
         <div className="hero bg-base-100 rounded-box p-10 mb-10 shadow-md">
           <div className="hero-content text-center">
             <div className="max-w-md">
               <h1 className="text-5xl font-bold text-primary">🏠 Panel de Control</h1>
-              <p className="py-6 text-lg text-gray-500">Bienvenido a Sillar Inmobiliaria. Selecciona un módulo para gestionar.</p>
+              <p className="py-6 text-lg text-gray-500">
+                Bienvenido al sistema Sillar Inmobiliaria. Selecciona un módulo para gestionar.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* TARJETAS DE ACCESO RÁPIDO */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* GRID DE TARJETAS (3 columnas para que queden 2 filas perfectas de 3) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
-          {/* CARD 1: PROPIETARIOS */}
+          {/* 1. PROPIETARIOS */}
           <Link href="/propietarios" className="card bg-base-100 shadow-xl hover:scale-105 transition-transform cursor-pointer border-b-4 border-info">
             <div className="card-body items-center text-center">
               <div className="text-5xl mb-2">👔</div>
@@ -30,7 +32,7 @@ export default function Home() {
             </div>
           </Link>
 
-          {/* CARD 2: PROPIEDADES */}
+          {/* 2. PROPIEDADES */}
           <Link href="/propiedades" className="card bg-base-100 shadow-xl hover:scale-105 transition-transform cursor-pointer border-b-4 border-success">
             <div className="card-body items-center text-center">
               <div className="text-5xl mb-2">🏡</div>
@@ -39,7 +41,7 @@ export default function Home() {
             </div>
           </Link>
 
-          {/* CARD 3: CLIENTES */}
+          {/* 3. CLIENTES */}
           <Link href="/clientes" className="card bg-base-100 shadow-xl hover:scale-105 transition-transform cursor-pointer border-b-4 border-warning">
             <div className="card-body items-center text-center">
               <div className="text-5xl mb-2">🙋‍♂️</div>
@@ -48,14 +50,39 @@ export default function Home() {
             </div>
           </Link>
 
-          {/* CARD 4: INTERESES (ACTUALIZADA) */}
+          {/* 4. INTERESADOS */}
           <Link href="/intereses" className="card bg-base-100 shadow-xl hover:scale-105 transition-transform cursor-pointer border-b-4 border-error">
             <div className="card-body items-center text-center">
-              {/* 👇 CAMBIO: Emoji más serio (Portapapeles de seguimiento) */}
-              <div className="text-5xl mb-2">📋</div>
-              <h2 className="card-title text-2xl">Intereses</h2>
-              {/* 👇 CAMBIO: Descripción más formal */}
+              <div className="text-5xl mb-2">📋</div> 
+              <h2 className="card-title text-2xl">Interesados</h2>
               <p className="text-gray-500">Seguimiento de clientes potenciales</p>
+            </div>
+          </Link>
+
+          {/* 5. GESTIÓN & CIERRES */}
+          <Link href="/gestion" className="card bg-base-100 shadow-xl hover:scale-105 transition-transform cursor-pointer border-b-4 border-secondary">
+            <div className="card-body items-center text-center">
+              <div className="text-5xl mb-2">💰</div> 
+              <h2 className="card-title text-2xl">Gestión & Cierres</h2>
+              <p className="text-gray-500">Registrar ventas y alquileres</p>
+            </div>
+          </Link>
+
+          {/* 6. VISITAS FÍSICAS */}
+          <Link href="/visitas" className="card bg-base-100 shadow-xl hover:scale-105 transition-transform cursor-pointer border-b-4 border-primary">
+            <div className="card-body items-center text-center">
+              <div className="text-5xl mb-2">📍</div> 
+              <h2 className="card-title text-2xl">Visitas Físicas</h2>
+              <p className="text-gray-500">Bitácora de salidas y resultados</p>
+            </div>
+          </Link>
+
+          {/* 7: SEGUIMIENTO */}
+          <Link href="/seguimiento" className="card bg-base-100 shadow-xl hover:scale-105 transition-transform cursor-pointer border-b-4 border-accent">
+            <div className="card-body items-center text-center">
+              <div className="text-5xl mb-2">📞</div> 
+              <h2 className="card-title text-2xl">Seguimiento</h2>
+              <p className="text-gray-500">Historial de llamadas y mensajes</p>
             </div>
           </Link>
 
