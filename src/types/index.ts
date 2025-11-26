@@ -6,6 +6,11 @@ export interface Propietario {
   fechaNacimiento: string;
   direccion: string;
   email?: string;
+  celular1: string;
+  celular2?: string;
+  asesor?: string;
+  fechaAlta?: string;
+  detalles?: string;
   banco?: string;
   cuenta?: string;
   cci?: string;
