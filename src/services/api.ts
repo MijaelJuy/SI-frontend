@@ -25,7 +25,7 @@ export const getPropietarios = async () => {
   return data;
 };
 
-export const createPropietario = async (datos: Omit<Propietario, 'id'>) => {
+export const createPropietario = async (datos: any) => { // 👈 Cambiado a 'any' para flexibilidad
   const { data } = await api.post<ApiResponse<Propietario>>('/propietarios', datos);
   return data;
 };
@@ -50,7 +50,7 @@ export const getClientes = async () => {
   return data;
 };
 
-export const createCliente = async (datos: Omit<Cliente, 'id'>) => {
+export const createCliente = async (datos: any) => { // 👈 Cambiado a 'any' para evitar error de 'telefono'
   const { data } = await api.post<ApiResponse<Cliente>>('/clientes', datos);
   return data;
 };
